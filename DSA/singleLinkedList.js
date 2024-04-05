@@ -68,6 +68,7 @@ class linkedList {
  }
   }
 }
+// Input operations
 const obList = new linkedList();
 obList.prepend(10);
 obList.prepend(20);
