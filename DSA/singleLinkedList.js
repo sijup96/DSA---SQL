@@ -68,7 +68,11 @@ class linkedList {
  }
   }
 }
+<<<<<<< HEAD
 //Input operation
+=======
+
+>>>>>>> be88134 (check2)
 const obList = new linkedList();
 obList.prepend(10);
 obList.prepend(20);
