@@ -37,9 +37,24 @@ class linkedList {
         this.head=node
     }
   }
+  // Insert element in the end
+  append(value){
+    const node= new Node(value)
+    if(!this.head){
+        this.head=node
+    }else{
+        let current=this.head
+        while(current.next){
+            current=current.next
+        }
+        current.next=node
+    }
+  }
 }
 
 const obList=new linkedList()
 obList.prepend(10)
 obList.prepend(20)
+obList.append(20)
+obList.append(30)
 console.log(obList.print());
