@@ -79,7 +79,7 @@ class linkedList {
     }
   }
   // Insert value by position
-  insert(value, position) {
+  insertToPosition(value, position) {
     const node = new Node(value);
     // Check for invalid position
     if (position < 0 || position > this.getSize()) {
@@ -114,22 +114,39 @@ class linkedList {
       return "Value not found..";
     }
   }
+  searchByIndex(index) {
+    if(index<0 || index > this.getSize()) return 'Invalid Index..'
+    let current = this.head;
+    for (let i = 0; i < this.getSize(); i++) {
+      if (i === index) {
+        return current.value
+      }
+      current = current.next;
+    }
+      return "Value not found..";
+    
+  }
 }
 // Input operations
 const obList = new linkedList();
 
+// Add to first
 obList.prepend(20);
 obList.prepend(20);
 
+// Add to end
 obList.append(20);
 obList.append(30);
 obList.append(40);
 
-obList.insert(25, 5);
+// Insert into position
+obList.insertToPosition(25, 5);
 
-// obList.remove(20)
+// Remove;
+obList.remove(20)
 
 console.log(obList.searchByValue(20));
+console.log(obList.searchByIndex(1));
 
 console.log("size: ", obList.getSize());
 console.log("Elements: ", obList.print());
