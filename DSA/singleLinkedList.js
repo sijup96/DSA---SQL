@@ -13,6 +13,17 @@ class linkedList {
   constructor() {
     this.head = null;
   }
+  // Get size
+  getSize() {
+    if (!this.head) return 0;
+    let current = this.head;
+    let i = 1;
+    while (current.next) {
+      i++;
+      current = current.next;
+    }
+    return i;
+  }
   // Print the List
   print() {
     if (!this.head) {
@@ -53,28 +64,72 @@ class linkedList {
   // Remove all by value
   remove(value) {
     if (!this.head) return "List is Empty..";
-    while(this.head.value===value){
-      this.head=this.head.next
+    while (this.head.value === value) {
+      this.head = this.head.next;
     }
-    let prev=this.head
-    let current=this.head.next
- while(current){
-  if(current.value===value){
-    prev.next=current.next
-  }else{
-    prev=prev.next
+    let prev = this.head;
+    let current = this.head.next;
+    while (current) {
+      if (current.value === value) {
+        prev.next = current.next;
+      } else {
+        prev = prev.next;
+      }
+      current = current.next;
+    }
   }
-  current=current.next
- }
+  // Insert value by position
+  insert(value, position) {
+    const node = new Node(value);
+    // Check for invalid position
+    if (position < 0 || position > this.getSize()) {
+      console.log("Enter valid Input..");
+      return;
+    }
+    if (position === 0) {
+      node.next = this.head;
+      this.head = node;
+      return this;
+    }
+    let current = this.head;
+    for (let i = 0; i < position - 1; i++) {
+      current = current.next;
+    }
+    node.next = current.next;
+    current.next = node;
+    return this;
+  }
+  searchByValue(value) {
+    let current = this.head;
+    let result = [];
+    for (let i = 0; i < this.getSize(); i++) {
+      if (current.value === value) {
+        result.push(i);
+      }
+      current = current.next;
+    }
+    if (result.length > 0) {
+      return result;
+    } else {
+      return "Value not found..";
+    }
   }
 }
 // Input operations
 const obList = new linkedList();
-obList.prepend(10);
+
 obList.prepend(20);
 obList.prepend(20);
+
 obList.append(20);
 obList.append(30);
 obList.append(40);
-obList.remove(20)
-console.log(obList.print());
+
+obList.insert(25, 5);
+
+// obList.remove(20)
+
+console.log(obList.searchByValue(20));
+
+console.log("size: ", obList.getSize());
+console.log("Elements: ", obList.print());
