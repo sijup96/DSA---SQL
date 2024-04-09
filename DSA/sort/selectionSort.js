@@ -1,4 +1,6 @@
 // Selection Sort
+// Space complexity = O(1)
+// Time complexity = O(n^2)
 function selectionSort(array){
     let min
 for(i=0;i<array.length-1;i++){

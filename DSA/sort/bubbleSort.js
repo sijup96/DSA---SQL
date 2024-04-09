@@ -1,4 +1,6 @@
-// Bubble sort ( O(n^2) )
+// Bubble sort 
+// Space complexity = O(1)
+// Time complexity = O(n^2)
 function bubbleSort(arr){
     let swaped
 do{

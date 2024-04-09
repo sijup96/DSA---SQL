@@ -1,4 +1,6 @@
-// insertion Sort ( O(n^2) )
+// insertion Sort 
+// Space complexity = O(1)
+// Time complexity = O(n^2)
 function insertionSort(arr) {
   for (i = 1; i < arr.length; i++) {
     let currentValue = arr[i];
