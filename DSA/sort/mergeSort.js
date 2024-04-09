@@ -29,7 +29,7 @@ function mergeSort(arr){
   let mid=Math.floor(arr.length/2)
   let left= arr.slice(0,mid)
   let right=arr.slice(mid)
-  return merge(left,right)
+  return merge(mergeSort(left),mergeSort(right))
 }
 function merge(left,right){
   let sortedArray=[]
@@ -39,8 +39,9 @@ function merge(left,right){
     }else{
       sortedArray.push(right.shift())
     }
-  } 
+  }
+  return [...sortedArray,...left,...right]
 }
 
-const arr = [4, 7, 8, 4, 9, 66, 11];
+const arr = [3, 7, 8, 4, 9, 66, 11];
 console.log(mergeSort(arr));
