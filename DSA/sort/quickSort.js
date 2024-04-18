@@ -17,5 +17,6 @@ function quickSort(arr){
     return [...quickSort(left),pivot,...quickSort(right)]
 }
 
+
 const arr=[8,30,-2,5,-7]
 console.log(quickSort(arr));

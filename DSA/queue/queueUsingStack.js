@@ -38,7 +38,7 @@ if(this.stack2.length){
 }
 return str
 }
-
+ 
 
 const queue=new queueUsingStack()
 const arr=[1,2,3,4,5]

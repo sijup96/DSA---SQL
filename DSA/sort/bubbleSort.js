@@ -16,6 +16,6 @@ do{
 }while(swaped)
 return arr
 }
-
 const arr=[6,5,7,3,8,3,0,22]
 console.log(bubbleSort(arr));
+
