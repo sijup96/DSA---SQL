@@ -49,52 +49,73 @@ class binarySearchTree {
       }
     }
   }
-  preOrder(root){
-if(root){
-  console.log('preOrder: ',root.value);
-  this.preOrder(root.left)
-  this.preOrder(root.right)
-}
-  }
-  inOrder(root){
-    if(root){
-      this.inOrder(root.left)
-      console.log('inorder',root.value);
-      this.inOrder(root.right)
+  preOrder(root) {
+    if (root) {
+      console.log("preOrder: ", root.value);
+      this.preOrder(root.left);
+      this.preOrder(root.right);
     }
   }
-  postOrder(root){
-if(root){
-  this.postOrder(root.left)
-  this.postOrder(root.right)
-  console.log('postOrder',root.value);
-}
+  inOrder(root) {
+    if (root) {
+      this.inOrder(root.left);
+      console.log("inorder", root.value);
+      this.inOrder(root.right);
+    }
   }
-  levelOrder(){
-    const queue=[]
-    queue.push(this.root)
-    while(queue.length){
-      let curr=queue.shift()
-      console.log('levelOrder:',curr.value);
-      if(curr.left){
-        queue.push(curr.left)
+  postOrder(root) {
+    if (root) {
+      this.postOrder(root.left);
+      this.postOrder(root.right);
+      console.log("postOrder", root.value);
+    }
+  }
+  levelOrder() {
+    const queue = [];
+    queue.push(this.root);
+    while (queue.length) {
+      let curr = queue.shift();
+      console.log("levelOrder:", curr.value);
+      if (curr.left) {
+        queue.push(curr.left);
       }
-      if(curr.right)
-      queue.push(curr.right)
+      if (curr.right) queue.push(curr.right);
     }
+  }
+  isValidBST(root, min = null, max = null) {
+    if (!root) return true;
+    if (min && root.val <= min.val) return false;
+    if (max && root.val >= max.val) return false;
+    return (
+      this.isValidBST(root.left, min, root) &&
+      this.isValidBST(root.right, root, max)
+    );
   }
 }
 
-const arr=[10,5,15,3,7]
+const arr = [10, 5, 15, 3, 7];
 const bst = new binarySearchTree();
+
+// Check isEmpty
 console.log("isEmpty: ", bst.isEmpty());
-for(let i=0;i<arr.length;i++){
+
+// INSERTION
+for (let i = 0; i < arr.length; i++) {
   bst.insert(arr[i]);
 }
 
 console.log("isEmpty: ", bst.isEmpty());
+
+//SEARCH BY VALUE
 console.log(bst.search(bst.root, 15));
-bst.preOrder(bst.root)
-bst.inOrder(bst.root)
-bst.postOrder(bst.root)
-bst.levelOrder()
+
+//DEPTH FIRST SEARCH (DFS) traverse
+bst.preOrder(bst.root); // Root - Left - Right
+bst.inOrder(bst.root); // Left - Root - Right
+bst.postOrder(bst.root); // Left - Right - Root
+
+// BREADTH FIRST SEARCH (BFS) traverse
+bst.levelOrder();
+
+// IS VALID BST
+console.log(bst.isValidBST(bst.root));
