@@ -91,6 +91,23 @@ class binarySearchTree {
       this.isValidBST(root.right, root, max)
     );
   }
+  prime(root){
+    if(root){
+      let flag=true
+      for(let i=2;i<root.value;i++){
+        if(root.value%i===0){
+          flag=false
+        }
+      }
+      if(flag){
+        console.log(root.value);
+      }
+      
+      this.prime(root.left)
+      this.prime(root.right)
+      
+    }
+  }
 }
 
 const arr = [10, 5, 15, 3, 7];
@@ -119,3 +136,4 @@ bst.levelOrder();
 
 // IS VALID BST
 console.log(bst.isValidBST(bst.root));
+bst.prime(bst.root)
