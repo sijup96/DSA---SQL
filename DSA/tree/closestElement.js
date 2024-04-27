@@ -56,7 +56,18 @@ class binarySearchTree {
     }
     return closestElement.value;
   }
+  isValidBST(root) {
+    if (root === null) return true;
+    if (
+      (root.left && root.left.val >= root.val) ||
+      (root.right && root.right.val <= root.val)
+    ) {
+      return false;
+    }
+    return this.isValidBST(root.left) && this.isValidBST(root.right);
+  }
 }
+
 const bst = new binarySearchTree();
 console.log(bst.isEmpty());
 
@@ -66,3 +77,4 @@ for (let i = 0; i < arr.length; i++) {
 }
 console.log(bst.isEmpty());
 console.log(bst.findClosestElement(bst.root, 10));
+console.log(bst.isValidBST(bst.root));
