@@ -1,5 +1,7 @@
 // BST O(log n)
 
+const { log } = require("console");
+
 class Node {
   constructor(value) {
     this.value = value;
@@ -91,21 +93,18 @@ class binarySearchTree {
       this.isValidBST(root.right, root, max)
     );
   }
-  prime(root){
-    if(root){
-      let flag=true
-      for(let i=2;i<root.value;i++){
-        if(root.value%i===0){
-          flag=false
-        }
-      }
-      if(flag){
-        console.log(root.value);
-      }
-      
-      this.prime(root.left)
-      this.prime(root.right)
-      
+  min(root) {
+    if (!root.left) {
+      return root.value;
+    } else {
+      return this.min(root.left);
+    }
+  }
+  max(root) {
+    if(!root.right){
+      return root.value
+    }else{
+      return this.max(root.right)
     }
   }
 }
@@ -136,4 +135,9 @@ bst.levelOrder();
 
 // IS VALID BST
 console.log(bst.isValidBST(bst.root));
-bst.prime(bst.root)
+
+// FIND MIN VALUE
+console.log("min:", bst.min(bst.root));
+
+// FIND MAX VALUE
+console.log("max:", bst.max(bst.root));
