@@ -1,7 +1,4 @@
 // BST O(log n)
-
-const { log } = require("console");
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -101,11 +98,32 @@ class binarySearchTree {
     }
   }
   max(root) {
-    if(!root.right){
-      return root.value
-    }else{
-      return this.max(root.right)
+    if (!root.right) {
+      return root.value;
+    } else {
+      return this.max(root.right);
     }
+  }
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+  deleteNode(root, value) {
+    if (root === null) return root;
+    if (value < root.value) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.value) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      if (!root.left && !root.right) {
+        return null
+      }
+      if(!root.left) return root.right
+      if(!root.right) return root.left
+    
+    root.value=this.min(root.right)
+    root.right=this.deleteNode(root.right,root.value)
+    }
+    return root
   }
 }
 
@@ -141,3 +159,8 @@ console.log("min:", bst.min(bst.root));
 
 // FIND MAX VALUE
 console.log("max:", bst.max(bst.root));
+
+// DELETE NODE
+bst.delete(5)
+// BREADTH FIRST SEARCH (BFS) traverse
+bst.levelOrder();

@@ -76,5 +76,7 @@ for (let i = 0; i < arr.length; i++) {
   bst.insert(arr[i]);
 }
 console.log(bst.isEmpty());
+
+
 console.log(bst.findClosestElement(bst.root, 10));
 console.log(bst.isValidBST(bst.root));

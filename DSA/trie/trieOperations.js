@@ -1,81 +1,27 @@
 // Trie
-// class Node{
-//     constructor(){
-//         this.children={}
-//         this.isWordEnd=false
-//     }
-// }
-// class Trie{
-//     constructor(){
-//         this.root=new Node()
-//     }
-//     insertWord(word){
-//         let current=this.root
-//         for(let i =0;i<word.length;i++){
-//             let insertData=word[i]
-//             if(!(insertData in current.children)){
-//                 current.children[insertData]=new Node()
-//             }
-//             current=current.children[insertData]
-//         }
-//         current.isWordEnd=true
-//     }
-//     contain(word){
-//         let current=this.root
-//         for(let i=0;i<word.length;i++){
-//             if(!(word[i] in current.children)){
-//                 return false
-//             }
-//             current=current.children[word[i]]
-//         }
-//         return current.isWordEnd
-//     }
-//     searcchPrefix(prefix){
-//         let current= this.root
-//         let words=[]
-//         for(let i=0;i<prefix.length;i++){
-//             if(!(prefix[i] in current.children)){
-//                 return words
-//             }
-//             current=current.children[prefix[i]]
-//         }
-//         this.collection(current,prefix,words)
-//         return words
-//     }
-//     collection(current,prefix,words){
-// if(current.isWordEnd){
-//     words.push(prefix)
-// }
-// for(let child in current.children){
-//     this.collection(current.children[child],prefix+child,words)
-// }
-//     }
-// }
-
-
 class Node{
     constructor(){
         this.children={}
         this.isWordEnd=false
     }
 }
-
 class Trie{
     constructor(){
-        this.root=new Node
+        this.root=new Node()
     }
     insertWord(word){
-        let current= this.root
-        for(let i=0;i<word.length;i++){
-            if(!(word[i] in current.children )){
-                current.children[word[i]]=new Node
+        let current=this.root
+        for(let i =0;i<word.length;i++){
+            let insertData=word[i]
+            if(!(insertData in current.children)){
+                current.children[insertData]=new Node()
             }
-            current=current.children[word[i]]
+            current=current.children[insertData]
         }
         current.isWordEnd=true
     }
     contain(word){
-        let current= this.root
+        let current=this.root
         for(let i=0;i<word.length;i++){
             if(!(word[i] in current.children)){
                 return false
@@ -84,28 +30,28 @@ class Trie{
         }
         return current.isWordEnd
     }
-    searcchPrefix(word){
+    searcchPrefix(prefix){
         let current= this.root
-        let result=[]
-        for(let i=0;i<word.length;i++){
-            if(!(word[i] in current.children)){
-                return result
+        let words=[]
+        for(let i=0;i<prefix.length;i++){
+            if(!(prefix[i] in current.children)){
+                return words
             }
-            current=current.children[word[i]]
+            current=current.children[prefix[i]]
         }
-        this.collection(current,word,result)
-        return result
-
+        this.collection(current,prefix,words)
+        return words
     }
-    collection(current,word,result){
+    collection(current,prefix,words){
 if(current.isWordEnd){
-    result.push(word)
+    words.push(prefix)
 }
 for(let child in current.children){
-    this.collection(current.children[child],word+child,result)
+    this.collection(current.children[child],prefix+child,words)
 }
+    }
 }
-}
+
 
 
 const tries=new Trie()
